@@ -1,8 +1,10 @@
 import { useState } from "react";
 import arrayExcusas from "./../data/arrayExcusas";
+import ListaFavoritas from "./ListaFavoritas";
+import type { Excusa } from "../interfaces/interfaceExcusa";
 
-function ListaExcusas() {
-  const [excusas, setExcusas] = useState(arrayExcusas);
+function ListaExcusas(){
+  const [excusas, setExcusas] = useState<Excusa[]>(arrayExcusas);
 
   //Estado para controlar la visibilidad de la lista
   const [mostrarLista, setMostrarLista] = useState(false);
@@ -15,7 +17,7 @@ function ListaExcusas() {
   const agregarExcusa = () => {
     if (nuevaExcusa.trim() === "") return; //evita agregar excusas vacías
 
-    const nueva = {
+    const nueva: Excusa = {
       id: excusas.length + 1, //hace el id autoincremental
       texto: nuevaExcusa,
     };
@@ -30,8 +32,16 @@ function ListaExcusas() {
     setExcusas(nuevasExcusas);
   };
 
+  //Estado para las excusas favoritas
+  const [favoritas, setFavoritas] = useState<Excusa[]>([]);
+  //Funcion para marcar como favorita una excusa
+  const marcarFavorita = (excusa: Excusa) => {
+    if (!favoritas.some((fav) => fav.id === excusa.id)){
+      setFavoritas([...favoritas, excusa]);
+    }
+  };
 
-  return (
+  return(
     <>
       <section className="lista-excusas">
         <h2>Lista de Excusas</h2>
@@ -54,17 +64,25 @@ function ListaExcusas() {
         </button>
 
 
-        {/*muestra la lista de excusas con el btn para eliminar*/}
+        {/*muestra la lista de excusas con el btn eliminar y fav*/}
         {mostrarLista && (
           <ul>
-            {excusas.map((excusa) => (
+            {excusas.map((excusa) =>(
               <li key={excusa.id}>
                 {excusa.texto}
+                {/*btn para eliminar excusa*/}
                 <button onClick={() => eliminarExcusa(excusa.id)}>❌</button>
+                {/*btn para marcar excusa como favorita*/}
+                <button onClick={() => marcarFavorita(excusa)}>
+                  {favoritas.some((fav) => fav.id === excusa.id) ? "⭐" : "☆"}
+                </button>
               </li>
             ))}
           </ul>
         )}
+        {/*componente que muestra la lista de excusas favoritas*/}
+        <ListaFavoritas favoritas={favoritas} 
+        />
       </section>
     </>
   );

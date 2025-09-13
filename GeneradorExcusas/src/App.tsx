@@ -10,6 +10,7 @@ function App() {
     <>
       <GeneradorExcusas />
       <ListaExcusas />
+      {/* Componente que muestra las excusas favoritas */}
     </>
   )
 }
