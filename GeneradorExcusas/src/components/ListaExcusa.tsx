@@ -1,19 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import arrayExcusas from "./../data/arrayExcusas";
 import ListaFavoritas from "./ListaFavoritas";
 import type { Excusa } from "../interfaces/interfaceExcusa";
 
-function ListaExcusas(){
-  const [excusas, setExcusas] = useState<Excusa[]>(arrayExcusas);
+function ListaExcusas() {
+
+  const [excusas, setExcusas] = useState<Excusa[]>(() => {
+    const excusasGuardadas = localStorage.getItem("excusas");
+    return excusasGuardadas ? JSON.parse(excusasGuardadas) : arrayExcusas;
+  });
+
+  //Estado para las excusas favoritas
+  const [favoritas, setFavoritas] = useState<Excusa[]>(() => {
+    const favoritasGuardadas = localStorage.getItem("favoritas");
+    return favoritasGuardadas ? JSON.parse(favoritasGuardadas) : [];
+  });
 
   //Estado para controlar la visibilidad de la lista
   const [mostrarLista, setMostrarLista] = useState(false);
+
+  //Estado para manejar lo que el ususario escribe y agregar a la lista
+  const [nuevaExcusa, setNuevaExcusa] = useState("");
+
+
+
+  //LOCALSTORAGE: guardar excusas en el localstorage cada vez que cambien
+  useEffect(() => {
+    localStorage.setItem("excusas", JSON.stringify(excusas));
+  }, [excusas]);
+
+  //LOCALSTORAGE: guardar favoritas en el localstorage cada vez que cambien
+    useEffect(() => {
+    localStorage.setItem("favoritas", JSON.stringify(favoritas));
+  }, [favoritas]);
+
+
+
+  //Funcion para mostrar/ocultar la lista de excusas
   const mostrarOcultarLista = () => {
     setMostrarLista(!mostrarLista);
   };
 
-  //Estado para manejar lo que el ususario escribe y agregar a la lista
-  const [nuevaExcusa, setNuevaExcusa] = useState("");
+
+  //Funcion para agregar una nueva excusa a la lista
   const agregarExcusa = () => {
     if (nuevaExcusa.trim() === "") return; //evita agregar excusas vacías
 
@@ -26,22 +55,21 @@ function ListaExcusas(){
     setNuevaExcusa(""); //el input queda vacío, se limpia
   };
 
+
   //Funcion para que el usuario pueda eliminar la excusa que ya no quiere
   const eliminarExcusa = (idEliminar: number) => {
-    const nuevasExcusas = excusas.filter((excusa) => excusa.id !== idEliminar);
-    setExcusas(nuevasExcusas);
+    setExcusas(excusas.filter((excusa) => excusa.id !== idEliminar));
+    setFavoritas(favoritas.filter((fav) => fav.id !== idEliminar));
   };
 
-  //Estado para las excusas favoritas
-  const [favoritas, setFavoritas] = useState<Excusa[]>([]);
   //Funcion para marcar como favorita una excusa
   const marcarFavorita = (excusa: Excusa) => {
-    if (!favoritas.some((fav) => fav.id === excusa.id)){
+    if (!favoritas.some((fav) => fav.id === excusa.id)) {
       setFavoritas([...favoritas, excusa]);
     }
   };
 
-  return(
+  return (
     <>
       <section className="lista-excusas">
         <h2>Lista de Excusas</h2>
@@ -67,7 +95,7 @@ function ListaExcusas(){
         {/*muestra la lista de excusas con el btn eliminar y fav*/}
         {mostrarLista && (
           <ul>
-            {excusas.map((excusa) =>(
+            {excusas.map((excusa) => (
               <li key={excusa.id}>
                 {excusa.texto}
                 {/*btn para eliminar excusa*/}
@@ -81,7 +109,7 @@ function ListaExcusas(){
           </ul>
         )}
         {/*componente que muestra la lista de excusas favoritas*/}
-        <ListaFavoritas favoritas={favoritas} 
+        <ListaFavoritas favoritas={favoritas}
         />
       </section>
     </>
