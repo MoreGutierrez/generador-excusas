@@ -2,6 +2,7 @@
 import { useState } from "react";
 import arrayExcusas from "../data/arrayExcusas";
 
+
 function GeneradorExcusas() {
   const [excusas, setExcusas] = useState("");
 
@@ -11,10 +12,10 @@ function GeneradorExcusas() {
   };
   
   return (
-    <div>
+    <>
       <button onClick={generarExcusa}>Generar Excusa</button>
       <p>{excusas}</p>
-    </div>
+    </>
   );
 }
 

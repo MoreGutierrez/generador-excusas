@@ -4,6 +4,8 @@ import GeneradorExcusas from './components/Generador'
 import ListaExcusas from './components/ListaExcusa'
 
 function App() {
+
+
   return (
     <>
       <GeneradorExcusas />
