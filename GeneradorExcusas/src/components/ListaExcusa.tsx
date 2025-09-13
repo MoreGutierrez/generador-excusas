@@ -24,6 +24,13 @@ function ListaExcusas() {
     setNuevaExcusa(""); //el input queda vacío, se limpia
   };
 
+  //Funcion para que el usuario pueda eliminar la excusa que ya no quiere
+  const eliminarExcusa = (idEliminar: number) => {
+    const nuevasExcusas = excusas.filter((excusa) => excusa.id !== idEliminar);
+    setExcusas(nuevasExcusas);
+  };
+
+
   return (
     <>
       <section className="lista-excusas">
@@ -47,11 +54,14 @@ function ListaExcusas() {
         </button>
 
 
-        {/*muestra la lista de excusas*/}
+        {/*muestra la lista de excusas con el btn para eliminar*/}
         {mostrarLista && (
           <ul>
             {excusas.map((excusa) => (
-              <li key={excusa.id}>{excusa.texto}</li>
+              <li key={excusa.id}>
+                {excusa.texto}
+                <button onClick={() => eliminarExcusa(excusa.id)}>❌</button>
+              </li>
             ))}
           </ul>
         )}
