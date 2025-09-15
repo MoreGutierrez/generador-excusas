@@ -1,0 +1,150 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f9d9eb, #d6eaff, #e0ffe4);
+  color: #333;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+section {
+  background-color: #ffffffcc;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  backdrop-filter: blur(5px);
+}
+
+/* Sección de favoritas */
+.lista-favoritas {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  background-color: #ffffffa7;
+}
+
+h2 {
+  color: #ff5f91;
+  text-transform: uppercase;  /*el texto queda en mayusculas*/
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.7em;
+  border: 1px solid #ff91c1;
+  border-radius: 0.5em;
+  margin-bottom: 0.5rem;
+  outline: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+  border-color: #ffb7d9;
+  box-shadow: 0 0 8px rgba(255, 145, 193, 0.5);
+}
+
+
+button {
+  padding: 0.7rem 1.2rem;
+  background: linear-gradient(135deg, #7d5fff, #46c2ff);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin: 0.3rem 0;
+  margin-top: 1rem;
+  transition: all 0.25s ease-in-out;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;  /*el texto queda en mayusculas*/
+  box-shadow: 0 0 6px rgba(117, 97, 157, 0.6);
+}
+
+
+button:hover {
+  background: linear-gradient(135deg, #a073ff, #6dd6ff);
+  box-shadow: 0 4px 10px rgba(100, 100, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+
+button:focus {
+  outline: none;
+}
+
+
+
+
+
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.li-excusa {
+  background-color: #f0eaff;
+  margin-bottom: 0.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.li-excusa:hover {
+  transform: scale(1.02);
+  background-color: #e5dbff;
+}
+
+.btns-excusa {
+  display: flex;
+  gap: 0.3rem;
+}
+
+/*btn de excusa (eliminar, favorita)*/
+.btn-excusa {
+  padding: 0.4rem 0.7rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff7eb9, #ff65a3);
+  color: white;
+  transition: all 0.2s;
+  width: auto;
+  font-size: 0.85rem;
+}
+
+.btn-excusa:hover {
+  background: linear-gradient(135deg, #ff9ec7, #ff7eb9);
+  box-shadow: 0 3px 6px rgba(255, 126, 185, 0.3);
+}
+
+.ul-favoritas {
+  list-style: disc inside;
+  padding-left: 1rem;
+  text-align: left;
+}
+
+.ul-favoritas li {
+  background-color: #eafff0;
+  margin-bottom: 0.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}

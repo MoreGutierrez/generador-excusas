@@ -10,12 +10,12 @@ function GeneradorExcusas() {
     const randomIndex = Math.floor(Math.random() * arrayExcusas.length);
     setExcusas(arrayExcusas[randomIndex].texto);
   };
-  
+
   return (
-    <>
+    <section className="lista-excusas">
       <button onClick={generarExcusa}>Generar Excusa</button>
       <p>{excusas}</p>
-    </>
+    </section>
   );
 }
 

@@ -96,12 +96,12 @@ function ListaExcusas() {
         {mostrarLista && (
           <ul>
             {excusas.map((excusa) => (
-              <li key={excusa.id}>
+              <li key={excusa.id} className="li-excusa">
                 {excusa.texto}
                 {/*btn para eliminar excusa*/}
-                <button onClick={() => eliminarExcusa(excusa.id)}>❌</button>
+                <button className="btn-excusa" onClick={() => eliminarExcusa(excusa.id)}>❌</button>
                 {/*btn para marcar excusa como favorita*/}
-                <button onClick={() => marcarFavorita(excusa)}>
+                <button className="btn-excusa" onClick={() => marcarFavorita(excusa)}>
                   {favoritas.some((fav) => fav.id === excusa.id) ? "⭐" : "☆"}
                 </button>
               </li>

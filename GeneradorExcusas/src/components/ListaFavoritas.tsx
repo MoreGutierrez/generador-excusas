@@ -18,9 +18,9 @@ function ListaFavoritas({ favoritas }:{ favoritas: Excusa[] }) {
 
         {/*lista favoritas*/}
         {mostrarFavoritas &&(
-          <ul>
+          <ul className="ul-favoritas">
             {favoritas.map((excusa) => (
-              <li key={excusa.id}>{excusa.texto}</li>
+              <li key={excusa.id} className="li-excusa">{excusa.texto}</li>
             ))}
           </ul>
         )}
